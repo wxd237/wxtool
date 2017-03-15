@@ -1,7 +1,4 @@
 sudo: false
-os:
-  - linux
-  - osx
 language: c
 compiler:
   - clang
@@ -9,6 +6,7 @@ compiler:
   
 env:
     matrix:
+      - OS=osx 
       - OS=el DIST=6
       - OS=el DIST=7
       - OS=fedora DIST=23
