@@ -18,3 +18,10 @@ env:
       - OS=debian DIST=wheezy
       - OS=debian DIST=jessie
       - OS=debian DIST=stretch
+      
+before_script:
+   - mkdir build
+   - cd build
+   - cmake ..
+
+script: make     
