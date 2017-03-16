@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
-project (memtool)
-add_executable(test  test.c )
-add_library(wxtool wxslab.c)
+project (mp)
 
-add_executable(wxslab_test wxslab_test.c)
-target_link_libraries(wxslab_test wxtool)
+add_library(mp mp_alloc.c)
+
+add_executable(test mp_test.c)
+target_link_libraries(test mp)
