@@ -5,12 +5,12 @@
 
 extern size_t wxslab_pagesize;
 
-struct wxslab_header {
+struct wxslab_header {                               //page header 
     struct slab_header *prev, *next;
     uint64_t slots;
     uintptr_t refcount;
     struct wxslab_header *page;
-    uint8_t data[] __attribute__((aligned(sizeof(void *))));
+    uint8_t data[] __attribute__((aligned(sizeof(void *))));    //data area
 };
 
 struct wxslab_chain {
