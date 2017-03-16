@@ -9,11 +9,17 @@
 #define SLOTS_FIRST ((uint64_t) 1)
 #define SLOTS_ALL_ZERO ((uint64_t) 0)
 
-void slab_init(struct wxslab_chain *const sch, const size_t itemsize)
+int wx_getpagesize(){
+	return getpagesize();
+}
+
+
+
+void wxslab_init(struct wxslab_chain *const sch, const size_t itemsize)
 {
     assert(sch != NULL);
     assert(itemsize >= 1 && itemsize <= SIZE_MAX);
-    assert(POWEROF2(wxslab_pagesize));
+    assert(POWEROF2(wx_getpagesize()));
 
     sch->itemsize = itemsize;
 
@@ -33,8 +39,8 @@ void slab_init(struct wxslab_chain *const sch, const size_t itemsize)
         }
     }
 
-    sch->pages_per_alloc = sch->slabsize > wxslab_pagesize ?
-        sch->slabsize : wxslab_pagesize;
+    sch->pages_per_alloc = sch->slabsize > wx_getpagesize() ?
+        sch->slabsize : wx_getpagesize();
 
     sch->empty_slotmask = ~SLOTS_ALL_ZERO >> (64 - sch->itemcount);
     sch->initial_slotmask = sch->empty_slotmask ^ SLOTS_FIRST;

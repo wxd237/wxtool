@@ -2,6 +2,7 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <unistd.h>
 
 extern size_t wxslab_pagesize;
 
