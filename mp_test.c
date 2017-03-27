@@ -4,16 +4,17 @@
 int main(int argc, char *argv[]) {
 
     int size = 1 << 12;
-    printf("size:%d\n",size);
     mp_pool_t *p = mp_create_pool(size);
+    printf("size:%d max %d\n",size,p->max);
 
     int i; 
     int j;
 
     for (i = 0; i < 50; i++) {
-        void *t=mp_alloc(p, 256);
+        void *t=mp_alloc(p, 2560);
 	assert(t!=NULL);
     }
+    printf("size:%d max %d\n",size,p->max);
 
     for (i = 0; i < 10; i++) {
         char *pp = mp_calloc(p, 32);

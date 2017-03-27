@@ -43,7 +43,7 @@ struct mp_node_s {
 
 
 typedef struct {
-    size_t               max;
+    size_t               max; //单页最大的分配大小
     mp_node_t           *current;
     mp_large_t          *large;
 #ifdef MP_DEBUG_LOG
